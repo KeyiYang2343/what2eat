@@ -21,7 +21,7 @@ app.secret_key = os.urandom(12)
 
 CORS(app)
 
-@app.route('/', methods=['GET'])
+@app.route('/available_materials/', methods=['GET'])
 def index():
 	import db_operations
 	available_materials = db_operations.fake_get_available_materials()
@@ -31,12 +31,12 @@ def index():
 def add_material():
 	import db_operations
 	data = json.loads(request.data)
+	print(data)
 	res_code = db_operations.fake_modify_materials(data)
 	if res_code=='success':
 		return redirect(url_for('index'))
 	else:
 		abort(400)
-		abort(Response('DatabaseError: please try later.'))
 
 if __name__ == '__main__':
      app.run(port=8003)

@@ -22,9 +22,13 @@ def fake_write_to_materials(new_materials):
 def fake_get_available_materials():
 	'''
 	return:
-		dict
+		list of dict
 	'''
-	return fake_read_materials()
+	materials = fake_read_materials()
+	res = []
+	for k,v in materials.items():
+		res.append({'name': k, 'amount': v})
+	return res
 
 
 def fake_modify_materials(data):
@@ -36,11 +40,12 @@ def fake_modify_materials(data):
 	'''
 	try:
 		current_materials = fake_read_materials()
-		for material in data.keys():
-			if material in current_materials.keys():
-				current_materials[material] = current_materials[material]+data[material]
+		for material in data:
+			if material['name'] in current_materials.keys():
+				print(current_materials)
+				current_materials[material['name']] = current_materials[material['name']]+int(material['amount'])
 			else:
-				current_materials[material] = data[material]
+				current_materials[material['name']] = int(material['amount'])
 		fake_write_to_materials(current_materials)
 		return 'success'
 	except:
