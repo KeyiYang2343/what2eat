@@ -1,1 +1,16 @@
 <app-material-list [materials]="materials"></app-material-list>
+<table style="width: 100%">
+	<tr>
+		<th>Name</th>
+		<th>picture</th>
+		<th>materials</th>
+		<th>time cost(min)</th>
+	</tr>
+	<tr *ngFor="let menu of menus">
+		<td>{{menu.name}}</td>
+		<td>{{menu.picture}}</td>
+		<td>
+			<li *ngFor="let material of menu.materials">{{material.name}}:{{material.amount}}</li></td>
+		<td>{{menu.time_cost}}</td>
+	</tr>
+</table>

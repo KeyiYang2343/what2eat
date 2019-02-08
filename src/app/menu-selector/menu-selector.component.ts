@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpsRequestsService } from '../https-requests.service';
+
 
 @Component({
   selector: 'app-menu-selector',
@@ -8,10 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class MenuSelectorComponent {
   materials: IMaterial[];
   menus: IMenu[];
-  
-  constructor() { }
+
+  constructor(private httpsRequestsService: HttpsRequestsService) { }
 
   ngOnInit() {
+  	this.httpsRequestsService.getMenus().subscribe( data => {
+  		this.menus = data;
+  	});
   }
 
 }
