@@ -9,20 +9,26 @@ import { HttpsRequestsService } from '../https-requests.service';
 export class MaterialInputBoxComponent implements OnInit {
   
   to_send: IMaterial[];
-  materials: IMaterial[];
+  materials: IMaterial[]=JSON.parse(localStorage.getItem('current_material'));
+  SelectedMaterial: string;
+  uAmount: number;
+  uMaterial: string;
 
   constructor(private http_service: HttpsRequestsService) { }
 
   ngOnInit() {
   }
 
-  OnSubmit(uName: string, uAmount: number) {
-    if (!uAmount) {
+  OnSubmit() {
+    if (!this.uAmount) {
       alert("请输入数量");
-    } else if (!uName) {
-      alert("请输入名称");
+    } else if (!this.SelectedMaterial) {
+      if (!this.uMaterial) {alert("请输入名称");}
+      else {this.to_send = [{name: this.uMaterial, amount: this.uAmount}];}
     } else {
-      this.to_send = [{name: uName, amount: uAmount}];
+      this.to_send = [{name: this.SelectedMaterial, amount: this.uAmount}];
+    }
+    if (this.to_send) {
       console.log("call api");
       console.log(this.to_send);
       this.http_service.modifyMaterials(this.to_send).subscribe((data: IMaterial[]) => {
@@ -30,6 +36,7 @@ export class MaterialInputBoxComponent implements OnInit {
         console.log(data);
         this.materials = data;
       });
+      this.to_send = undefined;
     }
   }
 

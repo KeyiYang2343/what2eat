@@ -15,7 +15,10 @@ export class MaterialListComponent {
   }
 
   ngOnInit() {
-  	 this.http_service.getAvailableMaterials().subscribe(data => this.materials=data)
+  	 this.http_service.getAvailableMaterials().subscribe(data => {
+       this.materials=data;
+       localStorage.setItem('current_material', JSON.stringify(data));
+     })
   }
 
   refreshList() {

@@ -18,4 +18,8 @@ export class HttpsRequestsService {
   public modifyMaterials(materials: IMaterial[]) {
   	return this.http.post<IMaterial[]> (`${this.BASE_URL}/add_new/`, materials)
   }
+
+  public getMenus() {
+  	return this.http.get<IMenu[]> (`${this.BASE_URL}/menus/`)
+  }
 }
