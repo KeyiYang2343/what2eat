@@ -1,0 +1,8 @@
+<p>
+  material-input-box works!
+</p>
+name: <input type="text" #namestring required><br>
+Amount: <input type="number" #amountnumber required><br>
+<button type="button" name="submitButton" (click)="OnSubmit(namestring.value, amountnumber.value)">确定</button>
+
+<app-material-list [materials]="materials"></app-material-list>
