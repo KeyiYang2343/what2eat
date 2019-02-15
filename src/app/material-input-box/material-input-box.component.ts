@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpsRequestsService } from '../https-requests.service';
+import { HttpsRequestsService } from '../services/https-requests.service';
 
 @Component({
   selector: 'app-material-input-box',
@@ -9,7 +9,7 @@ import { HttpsRequestsService } from '../https-requests.service';
 export class MaterialInputBoxComponent implements OnInit {
   
   to_send: IMaterial[];
-  materials: IMaterial[]=JSON.parse(localStorage.getItem('current_material'));
+  materials: IMaterial[];
   SelectedMaterial: string;
   uAmount: number;
   uMaterial: string;
@@ -17,6 +17,10 @@ export class MaterialInputBoxComponent implements OnInit {
   constructor(private http_service: HttpsRequestsService) { }
 
   ngOnInit() {
+       this.http_service.getAvailableMaterials().subscribe(data => {
+         this.materials=data;
+         localStorage.setItem('current_material', JSON.stringify(data));
+       })
   }
 
   OnSubmit() {

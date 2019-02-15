@@ -6,16 +6,18 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { MaterialListComponent } from './material-list/material-list.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpsRequestsService } from './https-requests.service';
+import { HttpsRequestsService } from './services/https-requests.service';
 import { MaterialInputBoxComponent } from './material-input-box/material-input-box.component';
 import { MenuSelectorComponent } from './menu-selector/menu-selector.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MaterialListComponent,
     MaterialInputBoxComponent,
-    MenuSelectorComponent
+    MenuSelectorComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

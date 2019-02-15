@@ -1,12 +1,17 @@
 
-name: <br>
-<select [(ngModel)]="SelectedMaterial">
-  <option *ngFor="let material of materials" value="{{material.name}}">{{material.name}}</option>
-  <option value=""> Other </option>
-</select><br>
-<input *ngIf="!SelectedMaterial" type="text" [(ngModel)]="uMaterial" placeholder="Please type material name here"><br>
-Amount: <br>
-<input type="number" [(ngModel)]="uAmount"><br>
-<button type="button" name="submitButton" (click)="OnSubmit()">确定</button>
-
-<app-material-list [materials]="materials"></app-material-list>
+ <form (ngSubmit)="OnSubmit()" #materialForm="ngForm">
+ 	<div>
+ 		<label for="name">Name:</label><br>
+ 		<select required [(ngModel)]="SelectedMaterial" id="name" name="name">
+ 			<option *ngFor="let material of materials" value="{{material.name}}">{{material.name}}</option>
+ 			<option value=""> Other </option>
+ 		</select><br>
+ 		<input *ngIf="!SelectedMaterial" type="text" [(ngModel)]="uMaterial" name="name" placeholder="Please type material name here"><br>
+ 	</div>
+ 	<div>
+ 		<label for="amount">Amonut:</label><br>
+ 		<input required type="number" [(ngModel)]="uAmount" id="amount" name="amount"><br>
+ 	</div>
+ 	<button [disabled]="!materialForm.form.valid" type="button" name="submitButton" (click)="OnSubmit()">确定</button>
+ </form>
+ <app-material-list [materials]="materials"></app-material-list>

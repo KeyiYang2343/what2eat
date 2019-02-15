@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpsRequestsService } from '../https-requests.service';
+import { HttpsRequestsService } from '../services/https-requests.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,14 +15,14 @@ export class MaterialListComponent {
   }
 
   ngOnInit() {
-  	 this.http_service.getAvailableMaterials().subscribe(data => {
-       this.materials=data;
-       localStorage.setItem('current_material', JSON.stringify(data));
-     })
+  	 // this.http_service.getAvailableMaterials().subscribe(data => {
+    //    this.materials=data;
+    //    localStorage.setItem('current_material', JSON.stringify(data));
+    //  })
   }
 
-  refreshList() {
-    this.materials = JSON.parse(localStorage.getItem('current_materials'));
-  }
+  // refreshList() {
+  //   this.materials = JSON.parse(localStorage.getItem('current_materials'));
+  // }
 
 }
