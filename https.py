@@ -38,5 +38,11 @@ def add_material():
 	else:
 		abort(400)
 
+@app.route('/menus/', methods=['GET'])
+def get_menus():
+	import db_operations
+	menus = db_operations.fake_get_menus()
+	return jsonify(menus)
+
 if __name__ == '__main__':
      app.run(port=8003)

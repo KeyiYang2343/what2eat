@@ -11,6 +11,16 @@ def fake_read_materials():
 		res = json.load(f)
 	return res
 
+def fake_get_menus():
+	with open('fake_menu_db.json', 'r') as f:
+		res = json.load(f)
+	for i in range(len(res)):
+		materials = []
+		for k,v in res[i]['materials']:
+			materials.append({'name': k, 'amount': v})
+		res[i]['materials'] = materials
+	return res
+
 def fake_write_to_materials(new_materials):
 	'''
 	append new data to database

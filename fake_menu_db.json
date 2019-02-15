@@ -1,0 +1,24 @@
+[
+	{
+		"name": "menu1",
+		"picture": "",
+		"materials": [
+			{
+				"a": 3,
+				"b": 2
+			}
+		],
+		"time_cost": 30
+	},
+	{
+		"name": "menu2",
+		"picture": "",
+		"materials": [
+			{
+				"b": 1,
+				"c": 5
+			}
+		],
+		"time_cost": 30
+	}
+]
